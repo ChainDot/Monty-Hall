@@ -12,29 +12,38 @@ const {
 let doorsChoices = ["Door1", "Door2", "Door3"];
 
 const main = () => {
-  for (let i = 0; i < 3; i++) {
-    //Set car in door array
-    setCar(doors);
-    console.log(doors);
+  //Set car in door array
+  const doors = ["goat", "goat", "goat"];
+  setCar(doors);
+  console.log(doors);
 
-    //display doors
-    let doorsChoices = ["Door1", "Door2", "Door3"];
-    showDoor(doorsChoices);
+  //display doors
+  let doorsChoices = ["Door1", "Door2", "Door3"];
 
-    // input player
-    let doorPicked = randomInt(0, doorsChoices.length);
+  // input player
+  let doorPicked = randomInt(0, doorsChoices.length);
 
-    // index of door to open with a goat behind it
-    let index = indexOfGoat(doors, "goat", doorPicked);
+  // index of door to open with a goat behind it
+  let index = indexOfGoat(doors, "goat", doorPicked);
 
-    console.log(doorShow(doorsChoices, index));
+  console.log(doorShow(doorsChoices, index));
 
-    doorsChoices.splice(index, 1);
-    console.log(doorsChoices);
-    // second player input
+  doorsChoices.splice(index, 1);
+  // second player input
 
-    console.log(result(doors, doorPicked));
+  console.log(result(doors, doorPicked));
+
+  if (doors[doorPicked] === "car") {
+    countWin++;
+  } else {
+    countLose++;
   }
 };
 
-main();
+let countWin = 0;
+let countLose = 0;
+for (let i = 0; i < process.argv[2]; i++) {
+  main();
+}
+console.log(`${countWin} win`);
+console.log(`${countLose} lose`);
